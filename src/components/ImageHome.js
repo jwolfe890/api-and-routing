@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import Nav from "./Nav.js";
 
 class ImageHome extends React.Component {
   state = {
@@ -23,14 +24,31 @@ class ImageHome extends React.Component {
   };
 
   displayImageContent = () => {
-    return <div></div>;
+    if (this.state.image) {
+      return (
+        <div>
+          <div onClick={this.deleteImage}>ID PAGE</div>
+          <div>{this.state.image.data.title}</div>
+        </div>
+      );
+    } else return <div></div>;
   };
 
-  goBack = () => {};
+  goBack = () => {
+    this.props.history.push({
+      pathname: "/",
+      state: { detail: "success" }
+    });
+  };
 
   render() {
     return (
       <div>
+        <Nav />
+        <div>
+          <button onClick={this.goBack}>BACK</button>
+          <div>IMAGE HOME COMPONENT</div>;
+        </div>
         <div>{this.displayImageContent()}</div>
       </div>
     );

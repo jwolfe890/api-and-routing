@@ -1,11 +1,17 @@
 import React from "react";
-import Images from "./components/Images";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ImageFinder from "./components/ImageFinder";
+import ImageHome from "./components/ImageHome";
 
 function App() {
   return (
     <div>
-      <Images />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={ImageFinder} />
+          <Route path="/images/:id" component={ImageHome} />
+        </Switch>
+      </Router>
     </div>
   );
 }
